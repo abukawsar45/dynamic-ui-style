@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar/Navbar';
+import { CiGlobe } from 'react-icons/ci';
+import { TbPencilMinus } from 'react-icons/tb';
 
 
 function App() {
@@ -7,19 +9,13 @@ function App() {
 
    const [isModalOpen, setIsModalOpen] = useState(false);
 
-   const openModal = () => {
-     setIsModalOpen(true);
-   };
-
-   const closeModal = () => {
-     setIsModalOpen(false);
-  };
+  
   
   return (
     <div className='px-2 md:px-4 lg:px-6 my-8'>
       <div>
-        <div className='grid  grid-cols-12'>
-          <div className='col-span-12 md:col-span-2'>
+        <div className='grid  grid-cols-12 gap-2'>
+          <div className='col-span-12 md:col-span-2 md:border-e-2 relative '>
             <div action='' className='mx-2'>
               {/* text color */}
               <div className='flex justify-between'>
@@ -36,24 +32,25 @@ function App() {
                 </div>
               </div>
               {/* typography Main task */}
-              <div className='flex justify-between'>
-                <div>
-                  <button>Typography</button>
+              <div className=''>
+                <div className=''>
+                  <div className='flex justify-between'>
+                    Typography
+                    <button
+                      className='close flex items-center'
+                      name='openModalButton'
+                      id='openModalButton'
+                      onClick={()=>setIsModalOpen(!isModalOpen)}
+                    >
+                      <TbPencilMinus/> <CiGlobe />
+                    </button>
+                  </div>
                 </div>
                 <div>
-                  <button
-                    name='openModalButton'
-                    id='openModalButton'
-                    onClick={openModal}
-                  >
-                    <span>icon</span> icon
-                  </button>
                   {isModalOpen && (
-                    <div className='modal'>
+                    <div className='modal absolute ml-[0%] bg-gray-100 shadow-md shadow-slate-700 '>
                       <div className='modal-content'>
-                        <span className='close' onClick={closeModal}>
-                          &times;
-                        </span>
+                        <button className=''>Typography</button>
                         <p>Modal Content Goes Here</p>
                       </div>
                     </div>
@@ -108,7 +105,6 @@ function App() {
             <Navbar />
           </div>
         </div>
-        
       </div>
     </div>
   );
