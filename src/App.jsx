@@ -34,21 +34,22 @@ function App() {
               {/* typography Main task */}
               <div className=''>
                 <div className=''>
-                  <div className='flex justify-between'>
+                  <div className='flex justify-between items-center'>
                     Typography
                     <button
                       className='close flex items-center'
                       name='openModalButton'
                       id='openModalButton'
-                      onClick={()=>setIsModalOpen(!isModalOpen)}
+                      onClick={() => setIsModalOpen(!isModalOpen)}
                     >
-                      <TbPencilMinus/> <CiGlobe />
+                      <TbPencilMinus className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
+                      <CiGlobe className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300' />
                     </button>
                   </div>
                 </div>
                 <div>
                   {isModalOpen && (
-                    <div className='modal absolute ml-[0%] bg-gray-100 shadow-md shadow-slate-700 '>
+                    <div className='modal absolute w-11/12 mx-auto duration-300 bg-gray-100 shadow-md shadow-slate-700 '>
                       <div className='modal-content'>
                         <button className=''>Typography</button>
                         <p>Modal Content Goes Here</p>
