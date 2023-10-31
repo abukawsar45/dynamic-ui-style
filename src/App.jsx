@@ -13,12 +13,14 @@ function App() {
   const [isRobotoClicked, setIsRobotoClicked] = useState(false);
   const [isKeniaClicked, setIsKeniaClicked] = useState(false);
   const [isJosefinClicked, setIsJosefinClicked] = useState(false);
+  const [fontSize, setFontSize] = useState(16);
 
 
   console.log({
     isRobotoClicked,
     isKeniaClicked,
-    isJosefinClicked
+    isJosefinClicked,
+    fontSize
   })
 
   useEffect(() => {
@@ -113,6 +115,30 @@ function App() {
                               </select>
                             </div>
                           </div>
+                          {/* font size */}
+                          <div>
+                            <div className='grid grid-cols-2 mt-4'>
+                              <div className='flex items-center'>
+                                <p>Size</p>
+                              </div>
+                              <div className='px-2'>
+                                <p className='text-end'>px &#9660;</p>
+                              </div>
+                            </div>
+                            <div className='flex items-center justify-between'>
+                             <input
+                                className='w-8/12'
+                                defaultValue={parseFloat(fontSize)}  
+                                onChange={(e) => {
+                                  setFontSize(parseFloat(e.target.value));  {/* Set fontSize as a float */}
+                                }}
+                                type='range'
+                                name=''
+                                id=''
+                              />{' '}
+                              <p>{fontSize}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -168,23 +194,25 @@ function App() {
             <div>
               <Navbar />
             </div>
-            <div className='flex justify-center items-center w-full'>
-              <input
-                className={`text-cyan-400 ${
-                  isRobotoClicked
-                    ? 'roboto'
-                    : isKeniaClicked
-                    ? 'kenia'
-                    : isJosefinClicked
-                    ? 'josefin'
-                    : ''
-                }`}
-                type='text'
-                name='heading'
-                id=''
-                defaultValue='Add your heading text here'
-              />
-            </div>
+         <div className='flex justify-center items-center w-full'>
+  <input
+    style={{ fontSize: `${fontSize}px` }} 
+    className={`text-cyan-400 w-full text-center ${
+      isRobotoClicked
+        ? 'roboto'
+        : isKeniaClicked
+        ? 'kenia'
+        : isJosefinClicked
+        ? 'josefin'
+        : ''
+    }`}
+    type='text'
+    name='heading'
+    id=''
+    defaultValue='Add your heading text here'
+  />
+</div>
+
           </div>
         </div>
       </div>
