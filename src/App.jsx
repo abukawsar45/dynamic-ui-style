@@ -15,6 +15,7 @@ function App() {
     fontFamily: 'roboto',
     fontSize: 52,
     fontWeight: 600,
+    // lineHeight:1
     // width: 600,
     
   });
@@ -35,7 +36,7 @@ function App() {
                   <label htmlFor=''>Text Color</label>
                 </div>
                 <div className='flex items-center'>
-                  <CiGlobe className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
+                  <CiGlobe className='p-[2px] text-2xl border-2 rounded-s-sm text-red-500' />{' '}
                   <input
                     type='color'
                     name=''
@@ -130,7 +131,7 @@ function App() {
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
-                                defaultValue={parseFloat(myStyleStore.fontSize)}
+                                value={parseFloat(myStyleStore?.fontSize || 16)}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -142,7 +143,7 @@ function App() {
                                 id=''
                               />{' '}
                               <input
-                                value={myStyleStore?.fontSize}
+                                value={myStyleStore?.fontSize }
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -304,7 +305,7 @@ function App() {
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
-                                defaultValue={parseFloat(myStyleStore.fontSize)}
+                                value={parseFloat(myStyleStore?.lineHeight || 1)}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -316,11 +317,49 @@ function App() {
                                 id=''
                               />{' '}
                               <input
-                                defaultValue={myStyleStore?.lineHeight}
+                                value={myStyleStore?.lineHeight || 1}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
                                     lineHeight: parseFloat(e.target.value),
+                                  })
+                                }
+                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                              />
+                            </div>
+                          </div>
+                          {/* letter spacing */}
+                          <div>
+                            <div className='grid grid-cols-2 mt-4'>
+                              <div className='flex items-center gap-3'>
+                                <p>Letter Spacing</p>
+                                <PiMonitorLight />
+                              </div>
+                              <div className='px-2'>
+                                <p className='text-end'>px &#9660;</p>
+                              </div>
+                            </div>
+                            <div className='flex items-center justify-between mt-2'>
+                              <input
+                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                style={{ '--range-color': '#FF5733' }}
+                                value={parseFloat(myStyleStore?.letterSpacing || 1)}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    letterSpacing: parseFloat(e.target.value),
+                                  })
+                                }
+                                type='range'
+                                name=''
+                                id=''
+                              />{' '}
+                              <input
+                                value={myStyleStore?.letterSpacing || 1}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    letterSpacing: parseFloat(e.target.value),
                                   })
                                 }
                                 className='px-2 w-12 rounded-md  border-2 border-slate-400'
