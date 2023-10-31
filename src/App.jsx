@@ -155,6 +155,8 @@ function App() {
                             <div className='flex items-center justify-between mt-2'>
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                min={ 0 }
+                                max={400}
                                 style={{ '--range-color': '#FF5733' }}
                                 value={parseFloat(myStyleStore?.fontSize || 0)}
                                 onChange={(e) =>
@@ -216,7 +218,7 @@ function App() {
                                 name=''
                                 id=''
                                 className='px-2 py-2 w-full rounded-md'
-                                defaultValue='600'
+                                defaultValue='none'
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -224,6 +226,9 @@ function App() {
                                   })
                                 }
                               >
+                                <option value='none'>
+                                  Default
+                                </option>
                                 <option value='rotate(5deg)'>
                                   Rotate (5deg)
                                 </option>
@@ -283,7 +288,7 @@ function App() {
                                   })
                                 }
                               >
-                                <option value='normal'>Normal</option>
+                                <option value='normal'>Default</option>
                                 <option value='italic'>Italic</option>
                               </select>
                             </div>
@@ -306,7 +311,7 @@ function App() {
                                   })
                                 }
                               >
-                                <option value='none'>None</option>
+                                <option value='none'>Defalut</option>
                                 <option value='underline'>Underline</option>
                                 <option value='overline'>Overline</option>
                                 <option value='line-through'>
@@ -493,7 +498,6 @@ function App() {
             <div className='flex justify-center items-center '>
               <p
                 style={myStyleStore}
-                // style={myCustomStyle}
                 className='text-cyan-400 border-2 border-red-300 px-2 py-1 mt-40 abc'
               >
                 Add your heading text here
