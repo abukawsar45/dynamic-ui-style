@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar/Navbar';
 import { CiGlobe } from 'react-icons/ci';
 import { TbPencilMinus } from 'react-icons/tb';
+import { VscDebugRestart, VscAdd } from 'react-icons/vsc';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className='px-2 md:px-4 lg:px-6 my-8'>
       <div>
-        <div className='grid  grid-cols-12 gap-2'>
+        <div className='grid  grid-cols-12 '>
           <div className='col-span-12 md:col-span-2 md:border-e-2 relative '>
             <div action='' className='mx-2'>
               {/* text color */}
@@ -49,10 +50,27 @@ function App() {
                 </div>
                 <div>
                   {isModalOpen && (
-                    <div className='modal absolute w-11/12 mx-auto duration-300 bg-gray-100 shadow-md shadow-slate-700 '>
-                      <div className='modal-content'>
-                        <button className=''>Typography</button>
-                        <p>Modal Content Goes Here</p>
+                    <div className='modal duration-300 bg-gray-100 shadow-md shadow-slate-700 '>
+                      <div className='modal-content px-2 py-1 mt-1'>
+                        <div className='flex justify-between '>
+                          <p className=''>Typography</p>
+                          <div className='flex items-center gap-2'>
+                            <button>
+                              <VscDebugRestart className='border-2 text-xl ' />
+                            </button>
+                            <button>
+                              <VscAdd className='border-2 text-xl' />{' '}
+                            </button>
+                          </div>
+                        </div>
+                        <div className='border-b-2 w-full border-slate-300 mt-2 shadow-md shadow-slate-900'></div>
+                        <div className='px-2 p-1'>
+                          {/* font family */}
+                          <div className="flex justify-between items-center">
+                            <p>family</p>
+                            <p>roboto</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
