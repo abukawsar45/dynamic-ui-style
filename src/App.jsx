@@ -24,7 +24,7 @@ function App() {
   
   
   return (
-    <div className='px-2 md:px-4 lg:px-6 my-8 h-[1900px]'>
+    <div className='px-2 md:px-4 lg:px-6 my-8'>
       <div>
         <div className='grid  grid-cols-12 '>
           <div className='col-span-12 md:col-span-2 md:border-e-2 relative '>
@@ -271,6 +271,7 @@ function App() {
                               <select
                                 name=''
                                 id=''
+                                defaultValue='none'
                                 className='px-2 py-2 w-full rounded-md'
                                 onChange={(e) =>
                                   setMyStyleStore({
@@ -286,6 +287,44 @@ function App() {
                                   Line Through
                                 </option>
                               </select>
+                            </div>
+                          </div>
+                          {/* line height */}
+                          <div>
+                            <div className='grid grid-cols-2 mt-4'>
+                              <div className='flex items-center gap-3'>
+                                <p>Line-Height</p>
+                                <PiMonitorLight />
+                              </div>
+                              <div className='px-2'>
+                                <p className='text-end'>px &#9660;</p>
+                              </div>
+                            </div>
+                            <div className='flex items-center justify-between mt-2'>
+                              <input
+                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                style={{ '--range-color': '#FF5733' }}
+                                defaultValue={parseFloat(myStyleStore.fontSize)}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    lineHeight: parseFloat(e.target.value),
+                                  })
+                                }
+                                type='range'
+                                name=''
+                                id=''
+                              />{' '}
+                              <input
+                                defaultValue={myStyleStore?.lineHeight}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    lineHeight: parseFloat(e.target.value),
+                                  })
+                                }
+                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                              />
                             </div>
                           </div>
                         </div>
