@@ -6,6 +6,11 @@
   -webkit-appearance: none;
 }
 
+.abc{
+
+  
+}
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 20px;

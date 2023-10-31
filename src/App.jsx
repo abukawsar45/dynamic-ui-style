@@ -13,8 +13,9 @@ function App() {
   const [myStyleStore, setMyStyleStore] = useState({
     color: '#1698e9',
     fontFamily: 'roboto',
-    fontSize: 24,
+    fontSize: 52,
     fontWeight: 600,
+    // width: 600,
     
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,17 +24,18 @@ function App() {
   
   
   return (
-    <div className='px-2 md:px-4 lg:px-6 my-8 h-screen'>
+    <div className='px-2 md:px-4 lg:px-6 my-8 h-[1900px]'>
       <div>
         <div className='grid  grid-cols-12 '>
           <div className='col-span-12 md:col-span-2 md:border-e-2 relative '>
             <div action='' className=''>
               {/* text color */}
-              <div className='flex justify-between'>
+              <div className='flex justify-between mt-2'>
                 <div>
                   <label htmlFor=''>Text Color</label>
                 </div>
-                <div>
+                <div className='flex items-center'>
+                  <CiGlobe className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
                   <input
                     type='color'
                     name=''
@@ -45,12 +47,13 @@ function App() {
                         color: e.target.value,
                       })
                     }
-                    className='ml-4 w-6 h-6 rounded-full'
+                    className='p-[2px] w-6 h-6 rounded-full'
                   />
                 </div>
               </div>
-              {/* typography Main task */}
-              <div className=''>
+              {/* typography */}
+              {/* main task */}
+              <div className='mt-2'>
                 <div className=''>
                   <div className='flex justify-between items-center'>
                     Typography
@@ -60,11 +63,12 @@ function App() {
                       id='openModalButton'
                       onClick={() => setIsModalOpen(!isModalOpen)}
                     >
-                      <TbPencilMinus className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
-                      <CiGlobe className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300' />
+                      <CiGlobe className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
+                      <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300' />
                     </button>
                   </div>
                 </div>
+                {/* modal part */}
                 <div>
                   {isModalOpen && (
                     <div className='modal absolute  w-full duration-300 bg-gray-100 shadow-md shadow-slate-700 '>
@@ -156,8 +160,8 @@ function App() {
                             </div>
                             <div>
                               <select
-                                name='font-weight'
-                                id='font-family'
+                                name=''
+                                id=''
                                 className='px-2 py-2 w-full rounded-md'
                                 defaultValue='600'
                                 onChange={(e) =>
@@ -176,6 +180,114 @@ function App() {
                               </select>
                             </div>
                           </div>
+                          {/* transform */}
+                          <div className='grid grid-cols-2 mt-4'>
+                            <div className='flex items-center'>
+                              <p>Transform</p>
+                            </div>
+                            <div>
+                              <select
+                                name=''
+                                id=''
+                                className='px-2 py-2 w-full rounded-md'
+                                defaultValue='600'
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    transform: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value='rotate(5deg)'>
+                                  Rotate (5deg)
+                                </option>
+                                <option value='rotate(25deg)'>
+                                  Rotate (25deg)
+                                </option>
+                                <option value='rotate(50deg)'>
+                                  Rotate (50deg)
+                                </option>
+                                <option value='rotate(75deg)'>
+                                  Rotate (75deg)
+                                </option>
+                                <option value='rotate(90deg)'>
+                                  Rotate (90deg)
+                                </option>
+                                <option value='rotate(120deg)'>
+                                  Rotate (120deg)
+                                </option>
+                                <option value='rotate(150deg)'>
+                                  Rotate (150deg)
+                                </option>
+                                <option value='rotate(180deg)'>
+                                  Rotate (180deg)
+                                </option>
+                                <option value='skewY(15deg)'>
+                                  skewY(15deg)
+                                </option>
+                                <option value='skewY(30deg)'>
+                                  skewY(30deg)
+                                </option>
+                                <option value='skewY(45deg)'>
+                                  skewY(45deg)
+                                </option>
+                                <option value='skewY(60deg)'>
+                                  skewY(60deg)
+                                </option>
+                                <option value='skewY(75deg)'>
+                                  skewY(75deg)
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          {/* style */}
+                          <div className='grid grid-cols-2 mt-4'>
+                            <div className='flex items-center'>
+                              <p>Style</p>
+                            </div>
+                            <div>
+                              <select
+                                name=''
+                                id=''
+                                className='px-2 py-2 w-full rounded-md'
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    fontStyle: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value='normal'>Normal</option>
+                                <option value='italic'>Italic</option>
+                              </select>
+                            </div>
+                          </div>
+                          {/* decoration */}
+                          <div className='grid grid-cols-2 mt-4'>
+                            <div className='flex items-center'>
+                              <p>Decoration</p>
+                            </div>
+                            <div>
+                              <select
+                                name=''
+                                id=''
+                                className='px-2 py-2 w-full rounded-md'
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    textDecoration: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value='none'>None</option>
+                                <option value='underline'>Underline</option>
+                                <option value='overline'>Overline</option>
+                                <option value='line-through'>
+                                  Line Through
+                                </option>
+                              </select>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -183,7 +295,7 @@ function App() {
                 </div>
               </div>
               {/* text stroke */}
-              <div className='flex justify-between'>
+              <div className='flex justify-between mt-2'>
                 <div>
                   <label htmlFor=''>Text Stroke</label>
                 </div>
@@ -197,7 +309,7 @@ function App() {
                 </div>
               </div>
               {/* text shadow */}
-              <div className='flex justify-between'>
+              <div className='flex justify-between mt-2'>
                 <div>
                   <label htmlFor=''>Text Shadow</label>
                 </div>
@@ -211,7 +323,7 @@ function App() {
                 </div>
               </div>
               {/* blend mode */}
-              <div className='flex justify-between'>
+              <div className='flex justify-between mt-2'>
                 <div>
                   <label htmlFor=''>Blend Mode</label>
                 </div>
@@ -235,9 +347,10 @@ function App() {
               <p
                 style={myStyleStore}
                 // style={myCustomStyle}
-                className='text-cyan-400 border-2 border-red-300 px-2 py-1'
-                
-              >Add your heading text here</p>
+                className='text-cyan-400 border-2 border-red-300 px-2 py-1 mt-40 abc'
+              >
+                Add your heading text here
+              </p>
             </div>
           </div>
         </div>
