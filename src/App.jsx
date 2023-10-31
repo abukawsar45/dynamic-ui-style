@@ -94,8 +94,9 @@ function App() {
                             </div>
                             <div>
                               <select
-                                name='font-family'
-                                id='font-family'
+                                name=''
+                                id=''
+                                defaultValue={myStyleStore?.fontFamily}
                                 className='px-2 py-2 w-full rounded-md'
                                 onChange={(e) =>
                                   setMyStyleStore({
@@ -104,8 +105,27 @@ function App() {
                                   })
                                 }
                               >
+                                <option value="'Risque', serif">Risque</option>
+                                <option value="'Road Rage', sans-serif">
+                                  Road Rage
+                                </option>
                                 <option value="'Roboto', sans-serif">
                                   Roboto
+                                </option>
+                                <option value="'Roboto Condensed', sans-serif">
+                                  Roboto Condensed
+                                </option>
+                                <option value="'Roboto Flex', sans-serif">
+                                  Roboto Flex
+                                </option>
+                                <option value="'Roboto Mono', sans-serif">
+                                  Roboto Mono
+                                </option>
+                                <option value="'Roboto Serif', sans-serif">
+                                  Roboto Serif
+                                </option>
+                                <option value="'Roboto Slab', sans-serif">
+                                  Roboto Slab
                                 </option>
                                 <option value="'Kenia', sans-serif">
                                   Kenia
@@ -143,7 +163,7 @@ function App() {
                                 id=''
                               />{' '}
                               <input
-                                value={myStyleStore?.fontSize }
+                                value={myStyleStore?.fontSize}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -305,7 +325,9 @@ function App() {
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
-                                value={parseFloat(myStyleStore?.lineHeight || 1)}
+                                value={parseFloat(
+                                  myStyleStore?.lineHeight || 1
+                                )}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -343,7 +365,9 @@ function App() {
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
-                                value={parseFloat(myStyleStore?.letterSpacing || 1)}
+                                value={parseFloat(
+                                  myStyleStore?.letterSpacing || 1
+                                )}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -381,7 +405,9 @@ function App() {
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
-                                value={parseFloat(myStyleStore?.wordSpacing || 1)}
+                                value={parseFloat(
+                                  myStyleStore?.wordSpacing || 1
+                                )}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
