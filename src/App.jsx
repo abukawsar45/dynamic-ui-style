@@ -15,14 +15,16 @@ function App() {
     fontFamily: 'roboto',
     fontSize: 52,
     fontWeight: 600,
-    // lineHeight:1
-    // width: 600,
+    lineHeight:1,
+    width: 600,
     
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   console.log(myStyleStore);
-  
+  const handleResetStyle = () => {
+    setMyStyleStore({})
+  }
   
   return (
     <div className='px-2 md:px-4 lg:px-6 my-8'>
@@ -77,8 +79,11 @@ function App() {
                         <div className='flex justify-between shadow-md shadow-slate-400 px-2 py-3 mt-1'>
                           <p className=''>Typography</p>
                           <div className='flex items-center gap-2'>
-                            <button>
-                              <VscDebugRestart className='border-2 text-xl ' />
+                            <button
+                              onClick={() => handleResetStyle()}
+                              className='border-2 hover:text-stone-950 '
+                            >
+                              <VscDebugRestart className=' text-xl hover:font-bold hover:text-emerald-600 hover:bg-slate-200' />
                             </button>
                             <button>
                               <VscAdd className='border-2 text-xl' />{' '}
@@ -151,7 +156,7 @@ function App() {
                               <input
                                 className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
-                                value={parseFloat(myStyleStore?.fontSize || 16)}
+                                value={parseFloat(myStyleStore?.fontSize || 0)}
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
