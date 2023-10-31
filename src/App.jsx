@@ -366,6 +366,44 @@ function App() {
                               />
                             </div>
                           </div>
+                          {/* word spacing */}
+                          <div>
+                            <div className='grid grid-cols-2 mt-4'>
+                              <div className='flex items-center gap-3'>
+                                <p>Word Spacing</p>
+                                <PiMonitorLight />
+                              </div>
+                              <div className='px-2'>
+                                <p className='text-end'>px &#9660;</p>
+                              </div>
+                            </div>
+                            <div className='flex items-center justify-between mt-2'>
+                              <input
+                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                style={{ '--range-color': '#FF5733' }}
+                                value={parseFloat(myStyleStore?.wordSpacing || 1)}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    wordSpacing: parseFloat(e.target.value),
+                                  })
+                                }
+                                type='range'
+                                name=''
+                                id=''
+                              />{' '}
+                              <input
+                                value={myStyleStore?.wordSpacing || 1}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    wordSpacing: parseFloat(e.target.value),
+                                  })
+                                }
+                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
