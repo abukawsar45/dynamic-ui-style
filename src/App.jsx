@@ -3,29 +3,23 @@ import Navbar from './Navbar/Navbar';
 import { CiGlobe } from 'react-icons/ci';
 import { TbPencilMinus } from 'react-icons/tb';
 import { VscDebugRestart, VscAdd } from 'react-icons/vsc';
+import { PiMonitorLight } from 'react-icons/pi';
 import './App.css';
 
 
 function App() {
 
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isRobotoClicked, setIsRobotoClicked] = useState(false);
-  const [isKeniaClicked, setIsKeniaClicked] = useState(false);
-  const [isJosefinClicked, setIsJosefinClicked] = useState(false);
-  const [fontSize, setFontSize] = useState(16);
-
-
-  console.log({
-    isRobotoClicked,
-    isKeniaClicked,
-    isJosefinClicked,
-    fontSize
-  })
-
-  useEffect(() => {
+  const [myStyleStore, setMyStyleStore] = useState({
+    color: '#1698e9',
+    fontFamily: 'roboto',
+    fontSize: 24,
+    fontWeight: 600,
     
-  },[isRobotoClicked,isKeniaClicked, isJosefinClicked])
+  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  console.log(myStyleStore);
   
   
   return (
@@ -44,7 +38,14 @@ function App() {
                     type='color'
                     name=''
                     id=''
-                    className='ml-4 w-4 h-4 rounded-full '
+                    defaultValue='#1698e9'
+                    onChange={(e) =>
+                      setMyStyleStore({
+                        ...myStyleStore,
+                        color: e.target.value,
+                      })
+                    }
+                    className='ml-4 w-6 h-6 rounded-full'
                   />
                 </div>
               </div>
@@ -91,52 +92,88 @@ function App() {
                                 name='font-family'
                                 id='font-family'
                                 className='px-2 py-2 w-full rounded-md'
-                                onChange={(e) => {
-                                  if (e.target.value === 'roboto') {
-                                    setIsRobotoClicked(true);
-                                    setIsKeniaClicked(false); // Reset the other font state
-                                  } else if (e.target.value === 'kenia') {
-                                    setIsKeniaClicked(true);
-                                    setIsRobotoClicked(false); // Reset the other font state
-                                  } else if (e.target.value === 'josefin') {
-                                    setIsJosefinClicked(true);
-                                    setIsKeniaClicked(false);
-                                    setIsRobotoClicked(false); // Reset the other font state
-                                  } else {
-                                    setIsRobotoClicked(false);
-                                    setIsKeniaClicked(false);
-                                    setIsJosefinClicked(false);
-                                  }
-                                }}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    fontFamily: e.target.value,
+                                  })
+                                }
                               >
-                                <option value='roboto'>Roboto</option>
-                                <option value='kenia'>Kenia</option>
-                                <option value='josefin'>Josefin</option>
+                                <option value="'Roboto', sans-serif">
+                                  Roboto
+                                </option>
+                                <option value="'Kenia', sans-serif">
+                                  Kenia
+                                </option>
+                                <option value="'Josefin Sans', sans-serif">
+                                  Josefin
+                                </option>
                               </select>
                             </div>
                           </div>
                           {/* font size */}
                           <div>
                             <div className='grid grid-cols-2 mt-4'>
-                              <div className='flex items-center'>
+                              <div className='flex items-center gap-3'>
                                 <p>Size</p>
+                                <PiMonitorLight />
                               </div>
                               <div className='px-2'>
                                 <p className='text-end'>px &#9660;</p>
                               </div>
                             </div>
-                            <div className='flex items-center justify-between'>
-                             <input
-                                className='w-8/12'
-                                defaultValue={parseFloat(fontSize)}  
-                                onChange={(e) => {
-                                  setFontSize(parseFloat(e.target.value));  {/* Set fontSize as a float */}
-                                }}
+                            <div className='flex items-center justify-between mt-2'>
+                              <input
+                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                style={{ '--range-color': '#FF5733' }}
+                                defaultValue={parseFloat(myStyleStore.fontSize)}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    fontSize: parseFloat(e.target.value),
+                                  })
+                                }
                                 type='range'
                                 name=''
                                 id=''
                               />{' '}
-                              <p>{fontSize}</p>
+                              <input
+                                value={myStyleStore?.fontSize}
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    fontSize: parseFloat(e.target.value),
+                                  })
+                                }
+                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                              />
+                            </div>
+                          </div>
+                          {/* font weight */}
+                          <div className='grid grid-cols-2 mt-4'>
+                            <div className='flex items-center'>
+                              <p>Weight</p>
+                            </div>
+                            <div>
+                              <select
+                                name='font-weight'
+                                id='font-family'
+                                className='px-2 py-2 w-full rounded-md'
+                                defaultValue='600'
+                                onChange={(e) =>
+                                  setMyStyleStore({
+                                    ...myStyleStore,
+                                    fontWeight: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value='400'>400 (Low Normal)</option>
+                                <option value='500'>500 (Normal)</option>
+                                <option value='600'>600 (Semi Bold)</option>
+                                <option value='700'>700 (Bold)</option>
+                                <option value='800'>800 (High Bold)</option>
+                                <option value='900'>900 (Extra Bold)</option>
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -194,25 +231,14 @@ function App() {
             <div>
               <Navbar />
             </div>
-         <div className='flex justify-center items-center w-full'>
-  <input
-    style={{ fontSize: `${fontSize}px` }} 
-    className={`text-cyan-400 w-full text-center ${
-      isRobotoClicked
-        ? 'roboto'
-        : isKeniaClicked
-        ? 'kenia'
-        : isJosefinClicked
-        ? 'josefin'
-        : ''
-    }`}
-    type='text'
-    name='heading'
-    id=''
-    defaultValue='Add your heading text here'
-  />
-</div>
-
+            <div className='flex justify-center items-center '>
+              <p
+                style={myStyleStore}
+                // style={myCustomStyle}
+                className='text-cyan-400 border-2 border-red-300 px-2 py-1'
+                
+              >Add your heading text here</p>
+            </div>
           </div>
         </div>
       </div>
