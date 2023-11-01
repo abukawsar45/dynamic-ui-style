@@ -26,7 +26,7 @@ const ReactTask = () => {
     fontSize: 52,
     fontWeight: 600,
     lineHeight: 1,
-    // width: 600,
+    width: 600,
   };
 
   const handleResetStyle = () => {
@@ -68,7 +68,7 @@ const ReactTask = () => {
         <div className='grid  grid-cols-12'>
           {/* left side part */}
           <div className='col-span-12 md:col-span-3 lg:col-span-2 px-2 md:border-e-2 md:h-screen'>
-            <div className='flex justify-between items-center md:mb-6 gap-2 md:gap-4 border-b border-slate-200'>
+            <div className='flex justify-between items-center md:mb-6 gap-1 md:gap-3 border-b border-slate-200'>
               <div className='flex flex-col justify-center items-center py-2 gap-1 '>
                 <FaPencilAlt />
                 <p>Content</p>
@@ -573,7 +573,7 @@ const ReactTask = () => {
               <div
                 className={`dropzone group ${
                   isDragging ? 'dragging' : ''
-                } border-2 border-slate-500 border-dotted w-80 h-32 flex flex-col justify-center items-center`}
+                } border-2 border-slate-500 border-dotted w-80 md:w-96 h-32 flex flex-col justify-center items-center`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
