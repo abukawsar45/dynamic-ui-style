@@ -7,8 +7,11 @@ import { FaPencilAlt, FaSun } from 'react-icons/fa';
 import { AiFillSetting, AiOutlineClose } from 'react-icons/ai';
 import { GoPlus,GoFileDirectoryFill } from 'react-icons/go';
 import './ReactTask.css';
+import useTitles from '../../hooks/useTitles';
+
 
 const ReactTask = () => {
+  useTitles('|| React Task');
   const [myStyleStore, setMyStyleStore] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   // drag and drop file
@@ -601,7 +604,7 @@ const ReactTask = () => {
                   )}
                   {!selectedFile
                     ? isDragging
-                      ? 'Drop your file here'
+                      ? 'Paste here'
                       : 'Drag widget here'
                     : null}
                 </label>

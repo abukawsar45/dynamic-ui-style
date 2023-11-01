@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import useTitles from '../../hooks/useTitles';
 
 const SimplePage = () => {
+  useTitles('|| Simple Page');
   const [backgroundColor, setBackgroundColor] = useState('#29e31c');
   const [centerColor, setCenterColor] = useState('#e91616'); 
 

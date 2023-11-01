@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import errorImage from '../../assets/error.svg'
+import useTitles from '../../hooks/useTitles';
 
 const ErrorPage = () => {
+  useTitles('|| Error Page');
   return (
     <div className='my-2 md:my-4 lg:my-6'>
       <Link
