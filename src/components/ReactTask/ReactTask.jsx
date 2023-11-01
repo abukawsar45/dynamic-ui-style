@@ -4,7 +4,8 @@ import { TbPencilMinus } from 'react-icons/tb';
 import { VscDebugRestart, VscAdd } from 'react-icons/vsc';
 import { PiMonitorLight } from 'react-icons/pi';
 import { FaPencilAlt, FaSun } from 'react-icons/fa';
-import { AiFillSetting } from 'react-icons/ai';
+import { AiFillSetting, AiOutlineClose } from 'react-icons/ai';
+import { GoPlus,GoFileDirectoryFill } from 'react-icons/go';
 import './ReactTask.css';
 
 const ReactTask = () => {
@@ -29,6 +30,36 @@ const ReactTask = () => {
   useEffect(() => {
     setMyStyleStore(myCustomStyle);
   }, []);
+
+  // drag and drop file
+    const [isDragging, setIsDragging] = useState(false);
+     const [selectedFile, setSelectedFile] = useState(null);
+
+     const handleDragOver = (e) => {
+       e.preventDefault();
+       setIsDragging(true);
+     };
+
+     const handleDragLeave = () => {
+       setIsDragging(false);
+     };
+
+     const handleDrop = (e) => {
+       e.preventDefault();
+       setIsDragging(false);
+
+       const files = e.dataTransfer.files;
+
+       if (files.length > 0) {
+         const file = files[0];
+         setSelectedFile(URL.createObjectURL(file));
+       }
+     };
+
+     const removeSelectedFile = () => {
+       setSelectedFile(null);
+     };
+
 
   return (
     <div className=''>
@@ -524,6 +555,56 @@ const ReactTask = () => {
               >
                 Add your heading text here
               </p>
+            </div>
+            <div class='flex flex-col justify-center items-center mt-2 md:mt-6 lg:mt-20'>
+              <div
+                className={`dropzone group ${
+                  isDragging ? 'dragging' : ''
+                } border-2 border-slate-500 border-dotted w-80 h-32 flex flex-col justify-center items-center`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                <input
+                  type='file'
+                  id='file-input'
+                  name='file'
+                  accept='.jpg, .jpeg, .png, .pdf, .doc, .docx'
+                  className='file-input'
+                  style={{ display: 'none' }}
+                  onChange={(e) => {
+                    if (e.target.files.length > 0) {
+                      const file = e.target.files[0];
+                      setSelectedFile(URL.createObjectURL(file));
+                    }
+                  }}
+                />
+                <label
+                  htmlFor='file-input'
+                  className='file-label flex flex-col justify-center items-center cursor-pointer'
+                >
+                  {!selectedFile && (
+                    <span className='flex gap-2'>
+                      <GoPlus className='text-4xl p-2 bg-red-300 opacity-70  hover:bg-red-400 rounded-full' />
+                      <GoFileDirectoryFill className='text-4xl p-2 text-white bg-slate-800 opacity-70  hover:bg-black rounded-full' />
+                    </span>
+                  )}
+                  {isDragging ? 'Drop your file here' : 'Drag widget here'}
+                </label>
+                {selectedFile && (
+                  <>
+                    <img
+                      src={selectedFile}
+                      alt='Selected File'
+                      className='h-4/6 '
+                    />
+                    <AiOutlineClose
+                      onClick={() => removeSelectedFile()}
+                      className='text-2xl hover:text-slate-50 hover:bg-red-400 '
+                    />
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
