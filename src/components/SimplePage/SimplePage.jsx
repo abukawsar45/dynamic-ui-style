@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 const SimplePage = () => {
-  const [backgroundColor, setBackgroundColor] = useState('#29e31c'); // Initial background color
-  const [centerColor, setCenterColor] = useState('#e91616'); // Initial background color
+  const [backgroundColor, setBackgroundColor] = useState('#29e31c');
+  const [centerColor, setCenterColor] = useState('#e91616'); 
 
   const randomColor = () => {
     const symbols = '0123456789ABCDEF';
@@ -31,7 +31,7 @@ const SimplePage = () => {
 
   return (
     <div className='my-2 md:my-12 mx-2 md:mx-12'>
-      <div className='text-center mb-4'>
+      <div className='md:text-center mb-4'>
         <p style={{ fontFamily: "'Josefin Sans', sans-serif" }}>
           The random color will change with each click you make.
         </p>
@@ -42,14 +42,14 @@ const SimplePage = () => {
           Change Color
         </button>
       </div>
-      <div className='flex justify-center'>
+      <div className='flex md:justify-center'>
         <div
-          className='w-screen h-screen relative flex justify-center items-center'
+          className='w-80 md:w-screen h-56 md:h-screen relative flex justify-center items-center'
           style={{ background: backgroundColor }}
         >
           <div
             style={{ background: centerColor }}
-            className='rounded-full h-72 w-72'
+            className='rounded-full h-24 md:h-56 lg:h-72 w-24 md:w-56 lg:w-72'
           ></div>
         </div>
       </div>
