@@ -11,6 +11,9 @@ import './ReactTask.css';
 const ReactTask = () => {
   const [myStyleStore, setMyStyleStore] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // drag and drop file
+  const [isDragging, setIsDragging] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   console.log(myStyleStore);
 
@@ -31,40 +34,36 @@ const ReactTask = () => {
     setMyStyleStore(myCustomStyle);
   }, []);
 
-  // drag and drop file
-    const [isDragging, setIsDragging] = useState(false);
-     const [selectedFile, setSelectedFile] = useState(null);
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
 
-     const handleDragOver = (e) => {
-       e.preventDefault();
-       setIsDragging(true);
-     };
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
 
-     const handleDragLeave = () => {
-       setIsDragging(false);
-     };
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
 
-     const handleDrop = (e) => {
-       e.preventDefault();
-       setIsDragging(false);
+    const files = e.dataTransfer.files;
 
-       const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      const file = files[0];
+      setSelectedFile(URL.createObjectURL(file));
+    }
+  };
 
-       if (files.length > 0) {
-         const file = files[0];
-         setSelectedFile(URL.createObjectURL(file));
-       }
-     };
-
-     const removeSelectedFile = () => {
-       setSelectedFile(null);
-     };
-
+  const removeSelectedFile = () => {
+    setSelectedFile(null);
+  };
 
   return (
     <div className=''>
       <div>
         <div className='grid  grid-cols-12'>
+          {/* left side part */}
           <div className='col-span-12 md:col-span-3 lg:col-span-2 px-2 md:border-e-2 md:h-screen'>
             <div className='flex justify-between items-center md:mb-6 gap-2 md:gap-4 border-b border-slate-200'>
               <div className='flex flex-col justify-center items-center py-2 gap-1 '>
@@ -120,7 +119,18 @@ const ReactTask = () => {
                       onClick={() => setIsModalOpen(!isModalOpen)}
                     >
                       <CiGlobe className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
-                      <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300  hover:bg-slate-400' />
+                      {/*  <AiOutlineClose
+                      onClick={() => removeSelectedFile()}
+                      className='text-2xl hover:text-slate-50 hover:bg-red-400 '
+                    /> */}
+                      {isModalOpen ? (
+                        <AiOutlineClose
+                          onClick={() => removeSelectedFile()}
+                          className='p-[2px] hover:p-[1px] text-2xl border-2 text-white bg-red-500 hover:text-slate-50 hover:bg-red-700'
+                        />
+                      ) : (
+                        <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300 hover:bg-slate-400' />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -546,7 +556,7 @@ const ReactTask = () => {
               </div>
             </div>
           </div>
-          {/* side part */}
+          {/*right side part */}
           <div className=' col-span-12 md:col-span-9 lg:col-span-10 mx-4'>
             <div className='flex justify-center items-center '>
               <p
@@ -589,7 +599,11 @@ const ReactTask = () => {
                       <GoFileDirectoryFill className='text-4xl p-2 text-white bg-slate-800 opacity-70  hover:bg-black rounded-full' />
                     </span>
                   )}
-                  {isDragging ? 'Drop your file here' : 'Drag widget here'}
+                  {!selectedFile
+                    ? isDragging
+                      ? 'Drop your file here'
+                      : 'Drag widget here'
+                    : null}
                 </label>
                 {selectedFile && (
                   <>
