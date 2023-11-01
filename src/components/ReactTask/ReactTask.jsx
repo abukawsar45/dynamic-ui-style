@@ -34,7 +34,7 @@ const ReactTask = () => {
     <div className=''>
       <div>
         <div className='grid  grid-cols-12'>
-          <div className='col-span-12 md:col-span-3 lg:col-span-2 px-2 md:border-e-2'>
+          <div className='col-span-12 md:col-span-3 lg:col-span-2 px-2 md:border-e-2 md:h-screen'>
             <div className='flex justify-between items-center md:mb-6 gap-2 md:gap-4 border-b border-slate-200'>
               <div className='flex flex-col justify-center items-center py-2 gap-1 '>
                 <FaPencilAlt />
