@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from './shared/Navbar/Navbar';
 import { CiGlobe } from 'react-icons/ci';
 import { TbPencilMinus } from 'react-icons/tb';
 import { VscDebugRestart, VscAdd } from 'react-icons/vsc';
 import { PiMonitorLight } from 'react-icons/pi';
-import './App.css';
+import { FaPencilAlt, FaSun } from 'react-icons/fa';
+import { AiFillSetting } from 'react-icons/ai';
+import './ReactTask.css';
 
-function App() {
+const ReactTask = () => {
   const [myStyleStore, setMyStyleStore] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,13 +31,31 @@ function App() {
   }, []);
 
   return (
-    <div className='px-2 md:px-4 lg:px-6 my-8'>
+    <div className=''>
       <div>
-        <div className='grid  grid-cols-12 '>
-          <div className='col-span-12 md:col-span-2 md:border-e-2 relative '>
+        <div className='grid  grid-cols-12'>
+          <div className='col-span-12 md:col-span-3 lg:col-span-2 px-2 md:border-e-2'>
+            <div className='flex justify-between items-center md:mb-6 gap-2 md:gap-4 border-b border-slate-200'>
+              <div className='flex flex-col justify-center items-center py-2 gap-1 '>
+                <FaPencilAlt />
+                <p>Content</p>
+              </div>
+              <div className='flex flex-col justify-center items-center py-2 gap-1 font-bold border-b-4 border-emerald-950 w-full'>
+                <FaSun />
+                <p>Style</p>
+              </div>
+              <div className='flex flex-col justify-center items-center py-2 gap-1 '>
+                <AiFillSetting />
+                <p>Advanced</p>
+              </div>
+            </div>
+            <p className='flex items-center font-bold gap-2 mb-5'>
+              {' '}
+              &#9660; <span>Title</span>{' '}
+            </p>
             <div action='' className=''>
               {/* text color */}
-              <div className='flex justify-between mt-2'>
+              <div className='flex justify-between mt-2 lg:mt-4'>
                 <div>
                   <label htmlFor=''>Text Color</label>
                 </div>
@@ -53,13 +72,13 @@ function App() {
                         color: e.target.value,
                       })
                     }
-                    className='p-[2px] w-6 h-6 rounded-full'
+                    className='p-[2px] w-6 h-6 rounded-full hover:bg-slate-400'
                   />
                 </div>
               </div>
               {/* typography */}
               {/* main task */}
-              <div className='mt-2'>
+              <div className='mt-2 lg:mt-4'>
                 <div className=''>
                   <div className='flex justify-between items-center'>
                     Typography
@@ -70,16 +89,16 @@ function App() {
                       onClick={() => setIsModalOpen(!isModalOpen)}
                     >
                       <CiGlobe className='p-[2px] text-2xl border-2 rounded-s-sm' />{' '}
-                      <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300' />
+                      <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300  hover:bg-slate-400' />
                     </button>
                   </div>
                 </div>
                 {/* modal part */}
                 <div>
                   {isModalOpen && (
-                    <div className='modal absolute  w-full duration-300 bg-gray-100 shadow-md shadow-slate-700 '>
+                    <div className='modal  w-full duration-300 bg-gray-100 shadow-md shadow-slate-700 '>
                       <div className='modal-content '>
-                        <div className='flex justify-between shadow-md shadow-slate-400 px-2 py-3 mt-1'>
+                        <div className='flex justify-between shadow-md shadow-slate-400  py-3 mt-1'>
                           <p className=''>Typography</p>
                           <div className='flex items-center gap-2'>
                             <button
@@ -105,7 +124,7 @@ function App() {
                                 name=''
                                 id=''
                                 defaultValue={myStyleStore?.fontFamily}
-                                className='px-2 py-2 w-full rounded-md'
+                                className='px-1 py-1 w-full rounded-md border'
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -157,7 +176,7 @@ function App() {
                             </div>
                             <div className='flex items-center justify-between mt-2'>
                               <input
-                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                className='w-8/12 text-size h-2 rounded-md bg-slate-400 text-sky-400'
                                 min={0}
                                 max={400}
                                 style={{ '--range-color': '#FF5733' }}
@@ -180,7 +199,7 @@ function App() {
                                     fontSize: parseFloat(e.target.value),
                                   })
                                 }
-                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                                className='px-2 w-12 rounded-md  border border-slate-400'
                               />
                             </div>
                           </div>
@@ -193,7 +212,7 @@ function App() {
                               <select
                                 name=''
                                 id=''
-                                className='px-2 py-2 w-full rounded-md'
+                                className='px-1 py-1 w-full rounded-md border'
                                 defaultValue='600'
                                 onChange={(e) =>
                                   setMyStyleStore({
@@ -220,7 +239,7 @@ function App() {
                               <select
                                 name=''
                                 id=''
-                                className='px-2 py-2 w-full rounded-md'
+                                className='px-1 py-1 w-full rounded-md border'
                                 defaultValue='none'
                                 onChange={(e) =>
                                   setMyStyleStore({
@@ -281,7 +300,7 @@ function App() {
                               <select
                                 name=''
                                 id=''
-                                className='px-2 py-2 w-full rounded-md'
+                                className='px-1 py-1 w-full rounded-md border'
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -304,7 +323,7 @@ function App() {
                                 name=''
                                 id=''
                                 defaultValue='none'
-                                className='px-2 py-2 w-full rounded-md'
+                                className='px-1 py-1 w-full rounded-md border'
                                 onChange={(e) =>
                                   setMyStyleStore({
                                     ...myStyleStore,
@@ -334,7 +353,7 @@ function App() {
                             </div>
                             <div className='flex items-center justify-between mt-2'>
                               <input
-                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                className='w-8/12 text-size h-2 rounded-md bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
                                 value={parseFloat(
                                   myStyleStore?.lineHeight || 0
@@ -357,7 +376,7 @@ function App() {
                                     lineHeight: parseFloat(e.target.value),
                                   })
                                 }
-                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                                className='px-2 w-12 rounded-md  border border-slate-400'
                               />
                             </div>
                           </div>
@@ -374,7 +393,7 @@ function App() {
                             </div>
                             <div className='flex items-center justify-between mt-2'>
                               <input
-                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                className='w-8/12 text-size h-2 rounded-md bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
                                 value={parseFloat(
                                   myStyleStore?.letterSpacing || 0
@@ -397,7 +416,7 @@ function App() {
                                     letterSpacing: parseFloat(e.target.value),
                                   })
                                 }
-                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                                className='px-2 w-12 rounded-md  border border-slate-400'
                               />
                             </div>
                           </div>
@@ -414,7 +433,7 @@ function App() {
                             </div>
                             <div className='flex items-center justify-between mt-2'>
                               <input
-                                className='w-8/12 text-size h-2 rounded-full bg-slate-400 text-sky-400'
+                                className='w-8/12 text-size h-2 rounded-md bg-slate-400 text-sky-400'
                                 style={{ '--range-color': '#FF5733' }}
                                 value={parseFloat(
                                   myStyleStore?.wordSpacing || 0
@@ -437,7 +456,7 @@ function App() {
                                     wordSpacing: parseFloat(e.target.value),
                                   })
                                 }
-                                className='px-2 w-12 rounded-md  border-2 border-slate-400'
+                                className='px-2 w-12 rounded-md  border border-slate-400'
                               />
                             </div>
                           </div>
@@ -448,54 +467,56 @@ function App() {
                 </div>
               </div>
               {/* text stroke */}
-              <div className='flex justify-between mt-2'>
+              <div className='flex justify-between mt-2 lg:mt-4'>
                 <div>
                   <label htmlFor=''>Text Stroke</label>
                 </div>
                 <div>
-                  <input
-                    type=''
-                    name=''
-                    id=''
-                    className='ml-4 w-4 h-4 rounded-full '
-                  />
+                  <button className='close flex items-center'>
+                    <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300  hover:bg-slate-400' />
+                  </button>
                 </div>
               </div>
               {/* text shadow */}
-              <div className='flex justify-between mt-2'>
+              <div className='flex justify-between mt-2 lg:mt-4'>
                 <div>
                   <label htmlFor=''>Text Shadow</label>
                 </div>
                 <div>
-                  <input
-                    type=''
-                    name=''
-                    id=''
-                    className='ml-4 w-4 h-4 rounded-full '
-                  />
+                  <button className='close flex items-center'>
+                    <TbPencilMinus className='p-[2px] text-2xl border-2 border-l-0 rounded-e-sm bg-stone-300  hover:bg-slate-400' />
+                  </button>
                 </div>
               </div>
               {/* blend mode */}
-              <div className='flex justify-between mt-2'>
-                <div>
-                  <label htmlFor=''>Blend Mode</label>
+              <div className='grid grid-cols-2 mt-2 lg:mt-4'>
+                <div className='flex items-center'>
+                  <p>Blend Mode</p>
                 </div>
                 <div>
-                  <input
-                    type=''
+                  <select
                     name=''
                     id=''
-                    className='ml-4 w-4 h-4 rounded-full '
-                  />
+                    className='px-1 py-1 w-full rounded-md border'
+                    onChange={(e) =>
+                      setMyStyleStore({
+                        ...myStyleStore,
+                        mixBlendMode: e.target.value, // Use valid blend mode here
+                      })
+                    }
+                  >
+                    <option value='normal'>Normal</option>
+                    <option value='multiply'>Multiply</option>
+                    <option value='overlay'>overlay</option>
+                    <option value='darken'>darken</option>
+                    <option value='lighten'>lighten</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
           {/* side part */}
-          <div className=' col-span-12 md:col-span-10 mx-4'>
-            <div>
-              <Navbar />
-            </div>
+          <div className=' col-span-12 md:col-span-9 lg:col-span-10 mx-4'>
             <div className='flex justify-center items-center '>
               <p
                 style={myStyleStore}
@@ -509,6 +530,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default ReactTask;
